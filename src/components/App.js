@@ -7,34 +7,57 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      current: [],
-      all: [],
-      showAll: false
+      todoList: [],
+      showCompleted: false,
+      searchValue: ''
     }
-    this._searchTodo = this._searchTodo.bind(this)
-    this._addTodo = this._addTodo.bind(this)
+    this._handleClearSearch = this._handleClearSearch.bind(this)
+    this._handleSearchInput = this._handleSearchInput.bind(this)
+    this._handleShowCompleted = this._handleShowCompleted.bind(this)
+    this._handleCheck = this._handleCheck.bind(this)
+    this._handleAddTodo = this._handleAddTodo.bind(this)
   }
 
-  _searchTodo (todo) {
-
+  _handleClearSearch (e) {
+    e.preventDefault()
+    this.setState({searchValue: ''})
   }
 
-  _addTodo (todo) {
+  _handleSearchInput (e) {
+    this.setState({searchValue: e.target.value})
+  }
+
+  _handleShowCompleted () {
+    this.setState({showCompleted: !this.state.showCompleted})
+  }
+
+  _handleCheck (i, todo, time) {
+    return (e) => {
+      let done = e.target.checked
+      let updatedTodo = {todo, time, done}
+      let todoList = this.state.todoList
+      todoList.splice(i, 1, updatedTodo)
+      this.setState({todoList})
+    }
+  }
+
+  _handleAddTodo (todo) {
     this.setState(prevState => ({
-      all: prevState.all.concat(todo),
-      current: prevState.current.concat(todo)
+      todoList: prevState.todoList.concat(todo)
     }))
   }
 
   render () {
-    let {current, all, showAll} = this.state
+    let {todoList, showCompleted, searchValue} = this.state
+    let filteredList = todoList.filter(({todo}) => todo.indexOf(searchValue) !== -1)
+    let incompleteList = filteredList.filter(({done}) => done === false)
 
     return (
       <div>
         <h1>Todo App</h1>
-        <SearchTodo search={this._searchTodo} />
-        <TodoList list={showAll ? all : current} />
-        <AddTodo add={this._addTodo} />
+        <SearchTodo clear={this._handleClearSearch} input={this._handleSearchInput} showCompleted={this._handleShowCompleted} searchValue={searchValue} />
+        <TodoList list={showCompleted ? filteredList : incompleteList} check={this._handleCheck} />
+        <AddTodo add={this._handleAddTodo} />
       </div>
     )
   }

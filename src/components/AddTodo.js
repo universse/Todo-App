@@ -9,8 +9,9 @@ class AddTodo extends React.Component {
   _onAddTodo (e) {
     e.preventDefault()
     let todo = this._input.value
-    let time = ''
-    todo !== '' && this.props.add([todo, time])
+    let d = new Date()
+    let time = d.toLocaleString()
+    todo !== '' && this.props.add({todo, time, done: false})
     this._input.value = ''
   }
 
