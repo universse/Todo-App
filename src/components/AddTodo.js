@@ -18,9 +18,9 @@ class AddTodo extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this._onAddTodo}>
-        <input type='text' placeholder='Add todo' ref={input => { this._input = input }} />
-        <button type='submit'>Add!</button>
+      <form onSubmit={this._onAddTodo} className='pv4 w-50 center'>
+        <input type='text' placeholder='Add a task' ref={input => { this._input = input }} className='center db w-100 pa2' />
+        <button type='submit' className='center bn w-100 f4 link dim br2 pv3 mt3 db white bg-blue'>Add!</button>
       </form>
     )
   }

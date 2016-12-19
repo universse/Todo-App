@@ -21,6 +21,10 @@ module.exports = {
         loader: ExtractTextPlugin.extract('css!postcss!sass')
       },
       {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('css')
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -39,9 +43,9 @@ module.exports = {
       App: 'src/components/App.js',
       SearchTodo: 'src/components/SearchTodo.js',
       TodoList: 'src/components/TodoList.js',
-      Todo: 'src/components/Todo.js',
       AddTodo: 'src/components/AddTodo.js',
-      applicationStyle: 'src/scss/main.scss'
+      applicationStyle: 'src/scss/main.scss',
+      tachyons: 'src/css/tachyons.min.css'
     }
   },
   output: {

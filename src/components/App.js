@@ -53,8 +53,8 @@ class App extends React.Component {
     let incompleteList = filteredList.filter(({done}) => done === false)
 
     return (
-      <div>
-        <h1>Todo App</h1>
+      <div className='w-50 center'>
+        <h1 className='f1 mt5 mb3 avenir center w-50 tc'>To-Do List</h1>
         <SearchTodo clear={this._handleClearSearch} input={this._handleSearchInput} showCompleted={this._handleShowCompleted} searchValue={searchValue} />
         <TodoList list={showCompleted ? filteredList : incompleteList} check={this._handleCheck} />
         <AddTodo add={this._handleAddTodo} />
