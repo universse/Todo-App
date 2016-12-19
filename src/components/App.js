@@ -31,12 +31,12 @@ class App extends React.Component {
     this.setState({showCompleted: !this.state.showCompleted})
   }
 
-  _handleCheck (i, todo, time) {
+  _handleCheck (id) {
     return (e) => {
-      let done = e.target.checked
-      let updatedTodo = {todo, time, done}
       let todoList = this.state.todoList
-      todoList.splice(i, 1, updatedTodo)
+      for (let i = 0; i < todoList.length; i++) {
+        if (todoList[i].id === id) todoList[i].done = e.target.checked
+      }
       this.setState({todoList})
     }
   }

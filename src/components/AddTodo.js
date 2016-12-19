@@ -11,7 +11,8 @@ class AddTodo extends React.Component {
     let todo = this._input.value
     let d = new Date()
     let time = d.toLocaleString()
-    todo !== '' && this.props.add({todo, time, done: false})
+    let id = d.valueOf()
+    todo !== '' && this.props.add({id, todo, time, done: false})
     this._input.value = ''
   }
 
