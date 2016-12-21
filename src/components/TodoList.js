@@ -14,7 +14,7 @@ let TodoList = ({list, check}) => {
   )
 
   return (
-    <ul className='list pl0 center w-60-l w-70 mv1'>
+    <ul className='list pl0 center w-40-l w-70 mv1'>
       {todoList}
     </ul>
   )
