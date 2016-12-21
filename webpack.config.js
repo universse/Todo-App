@@ -39,11 +39,11 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
+    modulesDirectories: [
+      'node_modules',
+      './src/components'
+    ],
     alias: {
-      App: 'src/components/App.js',
-      SearchTodo: 'src/components/SearchTodo.js',
-      TodoList: 'src/components/TodoList.js',
-      AddTodo: 'src/components/AddTodo.js',
       applicationStyle: 'src/scss/main.scss',
       tachyons: 'src/css/tachyons.min.css'
     }
