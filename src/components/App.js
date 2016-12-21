@@ -49,7 +49,7 @@ class App extends React.Component {
 
   render () {
     let {todoList, showCompleted, searchValue} = this.state
-    let filteredList = todoList.filter(({todo}) => todo.indexOf(searchValue) !== -1)
+    let filteredList = todoList.filter(({todo}) => todo.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1)
     let incompleteList = filteredList.filter(({done}) => done === false)
 
     return (

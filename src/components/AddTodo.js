@@ -12,8 +12,12 @@ class AddTodo extends React.Component {
     let d = new Date()
     let time = d.toLocaleString()
     let id = d.valueOf()
-    todo !== '' && this.props.add({id, todo, time, done: false})
-    this._input.value = ''
+    if (todo !== '') {
+      this.props.add({id, todo, time, done: false})
+      this._input.value = ''
+    } else {
+      this._input.focus()
+    }
   }
 
   render () {
