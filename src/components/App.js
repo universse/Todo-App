@@ -2,12 +2,13 @@ var React = require('react')
 var SearchTodo = require('SearchTodo')
 var TodoList = require('TodoList')
 var AddTodo = require('AddTodo')
+var TodoAPI = require('TodoAPI')
 
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      todoList: [],
+      todoList: TodoAPI.getTodos(),
       showCompleted: false,
       searchValue: ''
     }
@@ -60,6 +61,10 @@ class App extends React.Component {
         <AddTodo add={this._handleAddTodo} />
       </div>
     )
+  }
+
+  componentDidUpdate () {
+    TodoAPI.setTodos(this.state.todoList)
   }
 }
 
