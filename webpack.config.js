@@ -42,7 +42,8 @@ module.exports = {
     modulesDirectories: [
       'node_modules',
       './src/components',
-      './src/api'
+      './src/api',
+      './src/redux'
     ],
     alias: {
       applicationStyle: 'src/scss/main.scss',
