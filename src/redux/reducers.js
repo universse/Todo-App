@@ -19,7 +19,10 @@ export const searchValueReducer = (state = '', action) => {
 export const todoListReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      return state.concat(action.todo)
+      let d = new Date()
+      let time = d.toLocaleString()
+      let id = d.valueOf()
+      return state.concat({id, todo: action.todo, time, done: false})
     case 'CHECK_TODO':
       return state.map(todo => {
         if (todo.id === action.id) {
