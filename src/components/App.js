@@ -1,71 +1,31 @@
 var React = require('react')
+var {connect} = require('react-redux')
+
 var SearchTodo = require('SearchTodo')
 var TodoList = require('TodoList')
 var AddTodo = require('AddTodo')
 var TodoAPI = require('TodoAPI')
 
 class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      todoList: TodoAPI.getTodos(),
-      showCompleted: false,
-      searchValue: ''
-    }
-    this._handleClearSearch = this._handleClearSearch.bind(this)
-    this._handleSearchInput = this._handleSearchInput.bind(this)
-    this._handleShowCompleted = this._handleShowCompleted.bind(this)
-    this._handleCheck = this._handleCheck.bind(this)
-    this._handleAddTodo = this._handleAddTodo.bind(this)
-  }
-
-  _handleClearSearch (e) {
-    e.preventDefault()
-    this.setState({searchValue: ''})
-  }
-
-  _handleSearchInput (e) {
-    this.setState({searchValue: e.target.value})
-  }
-
-  _handleShowCompleted () {
-    this.setState({showCompleted: !this.state.showCompleted})
-  }
-
-  _handleCheck (id) {
-    return (e) => {
-      let todoList = this.state.todoList
-      for (let i = 0; i < todoList.length; i++) {
-        if (todoList[i].id === id) todoList[i].done = e.target.checked
-      }
-      this.setState({todoList})
-    }
-  }
-
-  _handleAddTodo (todo) {
-    this.setState(prevState => ({
-      todoList: prevState.todoList.concat(todo)
-    }))
-  }
-
   render () {
-    let {todoList, showCompleted, searchValue} = this.state
-    let filteredList = todoList.filter(({todo}) => todo.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1)
-    let incompleteList = filteredList.filter(({done}) => !done)
-
     return (
       <div className='w-80-ns w-90 center'>
         <h1 className='f1-l f2-m f3 mt4 mb3-l mb2-m mb0 avenir center w-60-l w-80-m w-90 tc'>To-Do List</h1>
-        <SearchTodo clear={this._handleClearSearch} input={this._handleSearchInput} showCompleted={this._handleShowCompleted} searchValue={searchValue} />
-        <TodoList list={showCompleted ? filteredList : incompleteList} check={this._handleCheck} />
-        <AddTodo add={this._handleAddTodo} />
+        <SearchTodo />
+        <TodoList />
+        <AddTodo />
       </div>
     )
   }
 
   componentDidUpdate () {
-    TodoAPI.setTodos(this.state.todoList)
+    let {todoList} = this.props
+    TodoAPI.setTodos(todoList)
   }
 }
 
-module.exports = App
+module.exports = connect(
+  state => ({
+    todoList: state.todoList
+  })
+)(App)

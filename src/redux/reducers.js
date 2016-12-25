@@ -1,3 +1,5 @@
+var TodoAPI = require('TodoAPI')
+
 export const showCompletedReducer = (state = false, action) => {
   switch (action.type) {
     case 'TOGGLE_COMPLETED':
@@ -16,7 +18,7 @@ export const searchValueReducer = (state = '', action) => {
   }
 }
 
-export const todoListReducer = (state = [], action) => {
+export const todoListReducer = (state = TodoAPI.getTodos(), action) => {
   switch (action.type) {
     case 'ADD_TODO':
       let d = new Date()
@@ -25,8 +27,9 @@ export const todoListReducer = (state = [], action) => {
       return state.concat({id, todo: action.todo, time, done: false})
     case 'CHECK_TODO':
       return state.map(todo => {
+        var done = todo.done
         if (todo.id === action.id) {
-          var done = !todo.done
+          done = !todo.done
         }
         return {
           ...todo,

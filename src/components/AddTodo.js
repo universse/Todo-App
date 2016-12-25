@@ -1,19 +1,19 @@
 var React = require('react')
+var {connect} = require('react-redux')
+var {addTodo} = require('actions')
 
 class AddTodo extends React.Component {
   constructor (props) {
     super(props)
-    this._onAddTodo = this._onAddTodo.bind(this)
+    this._addTodo = this._addTodo.bind(this)
   }
 
-  _onAddTodo (e) {
+  _addTodo (e) {
     e.preventDefault()
+    let {dispatch} = this.props
     let todo = this._input.value
-    let d = new Date()
-    let time = d.toLocaleString()
-    let id = d.valueOf()
     if (todo !== '') {
-      this.props.add({id, todo, time, done: false})
+      dispatch(addTodo(todo))
       this._input.value = ''
     } else {
       this._input.focus()
@@ -22,7 +22,7 @@ class AddTodo extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this._onAddTodo} className='pv4 w-40-l w-70 center'>
+      <form onSubmit={this._addTodo} className='pv4 w-40-l w-70 center'>
         <input type='text' placeholder='Add a task' ref={input => { this._input = input }} className='center db w-100 pa3-l pa2-m pa1' />
         <button type='submit' className='center bn w-100 f4-l f5-m f6 link dim br2 pv3-ns pv2 mt3 db white bg-blue'>Add!</button>
       </form>
@@ -30,4 +30,4 @@ class AddTodo extends React.Component {
   }
 }
 
-module.exports = AddTodo
+module.exports = connect()(AddTodo)
