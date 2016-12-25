@@ -1,12 +1,12 @@
 var axios = require('axios')
 
-export const toggleCompleted = () => ({
-  type: 'TOGGLE_COMPLETED'
-})
-
 export const inputSearch = searchValue => ({
   type: 'INPUT_SEARCH',
   searchValue
+})
+
+export const toggleCompleted = () => ({
+  type: 'TOGGLE_COMPLETED'
 })
 
 export const addTodo = todo => ({
