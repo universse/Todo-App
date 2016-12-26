@@ -15,6 +15,14 @@ export const addTodo = todoItem => ({
   todoItem
 })
 
+export const fetchTodoList = () => (dispatch, getState) => {
+  firebaseRef.child('todoList').once('value').then(snapshot => {
+    var savedTodoList = snapshot.val() || {}
+    var formattedTodoList = Object.keys(savedTodoList).map(id => ({id, ...savedTodoList[id]}))
+    dispatch(addTodo(formattedTodoList))
+  })
+}
+
 export const startAddingTodo = todo => (dispatch, getState) => {
   let d = new Date()
   let time = d.toLocaleString()
@@ -24,6 +32,7 @@ export const startAddingTodo = todo => (dispatch, getState) => {
     done: false
   }
   let todoItemRef = firebaseRef.child('todoList').push(todoItem)
+  // todoItemRef.update({id: todoItemRef.key})
   return todoItemRef.then(() => {
     dispatch(addTodo({
       id: todoItemRef.key,
