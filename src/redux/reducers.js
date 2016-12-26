@@ -21,20 +21,16 @@ export const searchValueReducer = (state = '', action) => {
 export const todoListReducer = (state = TodoAPI.getTodos(), action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      let d = new Date()
-      let time = d.toLocaleString()
-      let id = d.valueOf()
-      return state.concat({id, todo: action.todo, time, done: false})
+      return state.concat(action.todoItem)
     case 'CHECK_TODO':
       return state.map(todo => {
-        var done = todo.done
         if (todo.id === action.id) {
-          done = !todo.done
+          return {
+            ...todo,
+            done: action.done
+          }
         }
-        return {
-          ...todo,
-          done
-        }
+        return todo
       })
     default:
       return state

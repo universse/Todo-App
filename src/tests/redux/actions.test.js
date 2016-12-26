@@ -22,13 +22,13 @@ describe('Actions', () => {
   it('should properly add todo', () => {
     let expectedAction = {
       type: 'ADD_TODO',
-      todo: {
+      todoItem: {
         id: 1,
         todo: 'learn redux',
         done: false
       }
     }
-    let actualAction = addTodo(expectedAction.todo)
+    let actualAction = addTodo(expectedAction.todoItem)
     expect(actualAction).toEqual(expectedAction)
   })
 

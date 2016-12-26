@@ -43,7 +43,8 @@ module.exports = {
       'node_modules',
       './src/components',
       './src/api',
-      './src/redux'
+      './src/redux',
+      './src/firebase'
     ],
     alias: {
       applicationStyle: 'src/scss/main.scss',

@@ -1,4 +1,5 @@
 var axios = require('axios')
+var firebaseRef = require('firebase.main').firebaseRef
 
 export const inputSearch = searchValue => ({
   type: 'INPUT_SEARCH',
@@ -9,15 +10,42 @@ export const toggleCompleted = () => ({
   type: 'TOGGLE_COMPLETED'
 })
 
-export const addTodo = todo => ({
+export const addTodo = todoItem => ({
   type: 'ADD_TODO',
-  todo
+  todoItem
 })
 
-export const checkTodo = id => ({
+export const startAddingTodo = todo => (dispatch, getState) => {
+  let d = new Date()
+  let time = d.toLocaleString()
+  let todoItem = {
+    todo,
+    time,
+    done: false
+  }
+  let todoItemRef = firebaseRef.child('todoList').push(todoItem)
+  return todoItemRef.then(() => {
+    dispatch(addTodo({
+      id: todoItemRef.key,
+      ...todoItem
+    }))
+  })
+}
+
+export const checkTodo = (id, done) => ({
   type: 'CHECK_TODO',
-  id
+  id,
+  done
 })
+
+export const startCheckingTodo = (id, done) => (dispatch, getState) => {
+  var todoItemRef = firebaseRef.child(`todoList/${id}`)
+  todoItemRef.update({
+    done
+  }).then(() => {
+    dispatch(checkTodo(id, done))
+  })
+}
 
 export const startFetchingLocation = () => ({
   type: 'START_FETCHING_LOCATION'

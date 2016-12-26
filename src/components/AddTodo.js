@@ -1,6 +1,6 @@
 var React = require('react')
 var {connect} = require('react-redux')
-var {addTodo} = require('actions')
+var {startAddingTodo} = require('actions')
 
 class AddTodo extends React.Component {
   constructor (props) {
@@ -13,7 +13,7 @@ class AddTodo extends React.Component {
     let {dispatch} = this.props
     let todo = this._input.value
     if (todo !== '') {
-      dispatch(addTodo(todo))
+      dispatch(startAddingTodo(todo))
       this._input.value = ''
     } else {
       this._input.focus()

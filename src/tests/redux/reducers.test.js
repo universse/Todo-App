@@ -27,11 +27,16 @@ describe('Reducers', () => {
     it('should add todo', () => {
       let action = {
         type: 'ADD_TODO',
-        todo: 'learn redux'
+        todoItem: {
+          id: 1,
+          todo: 'learn firebase',
+          time: 'Dec',
+          done: false
+        }
       }
       let actualState = todoListReducer([], action)
       expect(actualState.length).toBe(1)
-      expect(actualState[0].todo).toEqual(action.todo)
+      expect(actualState[0]).toEqual(action.todoItem)
     })
 
     it('should check todo', () => {
