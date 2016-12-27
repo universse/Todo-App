@@ -1,6 +1,6 @@
-var React = require('react')
-var {connect} = require('react-redux')
-var {toggleCompleted, inputSearch} = require('actions')
+import React from 'react'
+import {connect} from 'react-redux'
+import {toggleCompleted, inputSearch} from 'actions'
 
 let SearchTodo = ({showCompleted, searchValue, dispatch}) =>
   <form onSubmit={(e) => { e.preventDefault(); dispatch(inputSearch('')) }} className='pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30 w-40-l w-70 center'>
@@ -10,7 +10,7 @@ let SearchTodo = ({showCompleted, searchValue, dispatch}) =>
     </div>
   </form>
 
-module.exports = connect(
+export default connect(
   state => ({
     showCompleted: state.showCompleted,
     searchValue: state.searchValue

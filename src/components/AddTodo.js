@@ -1,6 +1,6 @@
-var React = require('react')
-var {connect} = require('react-redux')
-var {startAddingTodo} = require('actions')
+import React from 'react'
+import {connect} from 'react-redux'
+import {startAddingTodo} from 'actions'
 
 class AddTodo extends React.Component {
   constructor (props) {
@@ -30,4 +30,4 @@ class AddTodo extends React.Component {
   }
 }
 
-module.exports = connect()(AddTodo)
+export default connect()(AddTodo)

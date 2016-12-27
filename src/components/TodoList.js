@@ -1,9 +1,9 @@
-var React = require('react')
-var {connect} = require('react-redux')
+import React from 'react'
+import {connect} from 'react-redux'
 
-var Todo = require('Todo')
+import Todo from 'Todo'
 
-let TodoList = ({showCompleted, searchValue, todoList, dispatch}) => {
+let TodoList = ({showCompleted, searchValue, todoList}) => {
   let filteredList = todoList.filter(({todo}) => todo.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1)
   let incompleteList = filteredList.filter(({done}) => !done)
 
@@ -17,7 +17,7 @@ let TodoList = ({showCompleted, searchValue, todoList, dispatch}) => {
   )
 }
 
-module.exports = connect(
+export default connect(
   state => ({
     showCompleted: state.showCompleted,
     searchValue: state.searchValue,

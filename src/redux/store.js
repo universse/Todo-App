@@ -1,17 +1,17 @@
-var redux = require('redux')
-var thunk = require('redux-thunk').default
-var {showCompletedReducer, searchValueReducer, todoListReducer, locationReducer} = require('reducers')
+import {combineReducers, createStore, compose, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
+import {showCompletedReducer, searchValueReducer, todoListReducer, locationReducer} from 'reducers'
 
 export const configureStore = () => {
-  const reducer = redux.combineReducers({
+  const reducer = combineReducers({
     showCompleted: showCompletedReducer,
     searchValue: searchValueReducer,
     todoList: todoListReducer,
     location: locationReducer
   })
 
-  var store = redux.createStore(reducer, redux.compose(
-    redux.applyMiddleware(thunk),
+  var store = createStore(reducer, compose(
+    applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ))
 

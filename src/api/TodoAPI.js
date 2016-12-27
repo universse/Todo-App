@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   setTodos (todoList) {
     if (Array.isArray(todoList)) {
       localStorage.setItem('todoList', JSON.stringify(todoList))

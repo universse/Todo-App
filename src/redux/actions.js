@@ -1,5 +1,5 @@
-var axios = require('axios')
-var firebaseRef = require('firebase.main').firebaseRef
+import axios from 'axios'
+import {firebaseRef} from 'firebase.main'
 
 export const inputSearch = searchValue => ({
   type: 'INPUT_SEARCH',

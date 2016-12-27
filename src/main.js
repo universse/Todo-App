@@ -1,14 +1,16 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var {Provider} = require('react-redux')
+import React from 'react'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
 
-var store = require('store').configureStore()
-var App = require('App')
-var {fetchTodoList} = require('actions')
+import {configureStore} from 'store'
+import {App} from 'App'
+import {fetchTodoList} from 'actions'
 // var TodoAPI = require('TodoAPI')
 
 require('applicationStyle')
 require('tachyons')
+
+var store = configureStore()
 
 // const saveTodoListToLocalStorage = () => {
 //   let state = store.getState()
@@ -19,7 +21,7 @@ require('tachyons')
 // let unsubscribe = store.subscribe(saveTodoListToLocalStorage)
 store.dispatch(fetchTodoList())
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     <App />
   </Provider>,

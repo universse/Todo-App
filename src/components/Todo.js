@@ -1,6 +1,6 @@
-var React = require('react')
-var {connect} = require('react-redux')
-var {startCheckingTodo} = require('actions')
+import React from 'react'
+import {connect} from 'react-redux'
+import {startCheckingTodo} from 'actions'
 
 let Todo = ({id, todo, time, done, dispatch}) =>
   <li className='center w-100 lh-copy pv2-ns pv1 ba bl-0 bt-0 br-0 b--dotted b--black-30'>
@@ -13,4 +13,4 @@ let Todo = ({id, todo, time, done, dispatch}) =>
     </div>
   </li>
 
-module.exports = connect()(Todo)
+export default connect()(Todo)

@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var autoprefixer = require('autoprefixer')
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 module.exports = {
   entry: [
@@ -12,6 +13,11 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('src/css/main.css', {
       allChunks: true
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
     })
   ],
   module: {

@@ -1,5 +1,5 @@
-var expect = require('expect')
-var {showCompletedReducer, searchValueReducer, todoListReducer, locationReducer} = require('reducers')
+import expect from 'expect'
+import {showCompletedReducer, searchValueReducer, todoListReducer} from 'reducers'
 
 describe('Reducers', () => {
   describe('showCompletedReducer', () => {
@@ -42,7 +42,8 @@ describe('Reducers', () => {
     it('should check todo', () => {
       let action = {
         type: 'CHECK_TODO',
-        id: 1
+        id: 1,
+        done: true
       }
       let actualState = todoListReducer([{
         id: 1,

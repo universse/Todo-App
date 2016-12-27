@@ -1,5 +1,5 @@
-var expect = require('expect')
-var {toggleCompleted, inputSearch, addTodo, checkTodo, startFetchingLocation, completeFetchingLocation, fetchLocation} = require('actions')
+import expect from 'expect'
+import {toggleCompleted, inputSearch, addTodo, checkTodo, startFetchingLocation, completeFetchingLocation, fetchLocation} from 'actions'
 
 describe('Actions', () => {
   it('should properly input search', () => {
@@ -35,9 +35,10 @@ describe('Actions', () => {
   it('should properly check off done todo', () => {
     let expectedAction = {
       type: 'CHECK_TODO',
-      id: 2
+      id: 2,
+      done: true
     }
-    let actualAction = checkTodo(expectedAction.id)
+    let actualAction = checkTodo(expectedAction.id, expectedAction.done)
     expect(actualAction).toEqual(expectedAction)
   })
 })
