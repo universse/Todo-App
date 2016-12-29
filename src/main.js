@@ -8,7 +8,6 @@ import {fetchTodoList} from 'actions'
 // var TodoAPI = require('TodoAPI')
 
 require('applicationStyle')
-require('tachyons')
 
 var store = configureStore()
 

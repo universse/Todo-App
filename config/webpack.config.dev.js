@@ -1,23 +1,25 @@
-var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var autoprefixer = require('autoprefixer')
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+const webpack = require('webpack')
+const autoprefixer = require('autoprefixer')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const paths = require('./paths')
+
+process.env.NODE_ENV = 'development'
 
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:8080',
     'webpack/hot/only-dev-server',
-    './src/main.js'
+    paths.mainJs
   ],
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('src/css/main.css', {
-      allChunks: true
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.html
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
+    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin('main.css', {
+      allChunks: true
     })
   ],
   module: {
@@ -53,12 +55,11 @@ module.exports = {
       './src/firebase'
     ],
     alias: {
-      applicationStyle: 'src/scss/main.scss',
-      tachyons: 'src/css/tachyons.min.css'
+      applicationStyle: paths.mainScss
     }
   },
   output: {
     filename: 'index.js',
-    path: './src'
+    path: paths.build
   }
 }
