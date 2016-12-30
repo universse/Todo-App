@@ -13,19 +13,23 @@ module.exports = {
   ],
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Todo App',
       inject: true,
       template: paths.html,
       minify: {
-        removeComments: true,
         collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
-        minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true
+        minifyJS: true,
+        minifyURLs: true,
+        removeEmptyAttributes: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        sortAttributes: true,
+        sortClassName: true,
+        useShortDoctype: true
       }
     }),
     new webpack.DefinePlugin({

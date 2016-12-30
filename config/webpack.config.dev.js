@@ -14,6 +14,7 @@ module.exports = {
   ],
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Todo App',
       inject: true,
       template: paths.html
     }),
