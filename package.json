@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build && node server.js",
     "dev": "webpack-dev-server --config ./config/webpack.config.dev.js",
     "build": "webpack -p --config ./config/webpack.config.prod.js",
     "test": "karma start"
