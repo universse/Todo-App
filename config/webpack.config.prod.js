@@ -2,9 +2,12 @@ const webpack = require('webpack')
 const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const envFile = require('node-env-file')
 const paths = require('./paths')
 
 process.env.NODE_ENV = 'production'
+
+envFile(paths.prodEnv)
 
 module.exports = {
   bail: true,

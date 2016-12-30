@@ -11,5 +11,6 @@ module.exports = {
   src: resolvePath('src'),
   mainJs: resolvePath('src/main.js'),
   mainScss: resolvePath('src/styles/main.scss'),
-  devEnv: resolvePath('config/development.env')
+  devEnv: resolvePath('config/development.env'),
+  prodEnv: resolvePath('config/production.env')
 }
