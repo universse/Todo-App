@@ -1,11 +1,11 @@
 import firebase from 'firebase'
 
 var config = {
-  apiKey: 'AIzaSyA5_dsTH9duG7Ydg8rFfYKoGGu17AwkvNU',
-  authDomain: 'test-8ceb2.firebaseapp.com',
-  databaseURL: 'https://test-8ceb2.firebaseio.com',
-  storageBucket: 'test-8ceb2.appspot.com',
-  messagingSenderId: '689380963189'
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID
 }
 
 firebase.initializeApp(config)
