@@ -103,10 +103,14 @@ module.exports = {
     root: __dirname,
     modulesDirectories: [
       'node_modules',
-      './src/components',
       './src/api',
-      './src/redux',
-      './src/firebase'
+      './src/AppContainer',
+      './src/AppHeader',
+      './src/AppLayout',
+      './src/AppRouter',
+      './src/components',
+      './src/firebase',
+      './src/redux'
     ],
     alias: {
       applicationStyle: paths.mainScss
