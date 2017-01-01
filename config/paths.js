@@ -8,6 +8,7 @@ module.exports = {
   build: resolvePath('build'),
   public: resolvePath('public'),
   html: resolvePath('public/index.html'),
+  builtHtml: resolvePath('build/index.html'),
   src: resolvePath('src'),
   mainJs: resolvePath('src/main.js'),
   mainScss: resolvePath('src/styles/main.scss'),

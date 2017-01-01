@@ -1,5 +1,5 @@
 var express = require('express')
-const path = require('path')
+const paths = require('../config/paths')
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -12,10 +12,10 @@ app.use(function (req, res, next) {
   }
 })
 
-app.use(express.static('build'))
+app.use(express.static(paths.build))
 
 app.get('*', function (req, res) {
-  res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+  res.sendFile(paths.builtHtml)
 })
 
 app.listen(PORT, function () {

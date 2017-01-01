@@ -30,6 +30,8 @@ export const todoListReducer = (state = [], action) => {
         }
         return todo
       })
+    case 'CLEAR_LIST':
+      return []
     default:
       return state
   }
@@ -47,6 +49,17 @@ export const locationReducer = (state = {fetching: false, url: undefined}, actio
         fetching: false,
         url: action.url
       }
+    default:
+      return state
+  }
+}
+
+export const userReducer = (state = '', action) => {
+  switch (action.type) {
+    case 'LOG_IN':
+      return action.uid
+    case 'LOG_OUT':
+      return ''
     default:
       return state
   }

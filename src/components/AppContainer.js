@@ -1,19 +1,12 @@
 import React from 'react'
 import {Provider} from 'react-redux'
 
-import {AppRouter} from 'AppRouter'
-import {configureStore} from 'store'
-import {fetchTodoList} from 'actions'
+import {store, AppRouter} from 'AppRouter'
 
-var store = configureStore()
-
-// const saveTodoListToLocalStorage = () => {
-//   let state = store.getState()
-//   console.log(state)
-//   TodoAPI.setTodos(state.todoList)
-// }
-// let unsubscribe = store.subscribe(saveTodoListToLocalStorage)
-store.dispatch(fetchTodoList())
+store.subscribe(() => {
+  let state = store.getState()
+  console.log(state)
+})
 
 export let AppContainer = props =>
   <Provider store={store}>

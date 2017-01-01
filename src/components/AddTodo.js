@@ -10,10 +10,10 @@ class AddTodo extends React.Component {
 
   _addTodo (e) {
     e.preventDefault()
-    let {dispatch} = this.props
+    let {uid, dispatch} = this.props
     let todo = this._input.value
     if (todo !== '') {
-      dispatch(startAddingTodo(todo))
+      dispatch(startAddingTodo(uid, todo))
       this._input.value = ''
     } else {
       this._input.focus()
@@ -30,4 +30,8 @@ class AddTodo extends React.Component {
   }
 }
 
-export default connect()(AddTodo)
+export default connect(
+  state => ({
+    uid: state.user
+  })
+)(AddTodo)
