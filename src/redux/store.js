@@ -1,7 +1,10 @@
 import {combineReducers, createStore, compose, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import {showCompletedReducer, searchValueReducer, todoListReducer, locationReducer, userReducer} from 'reducers'
-import {routerReducer} from 'react-router-redux'
+import {routerReducer, routerMiddleware} from 'react-router-redux'
+import {browserHistory} from 'react-router'
+
+const middleware = routerMiddleware(browserHistory)
 
 export const configureStore = () => {
   const reducer = combineReducers({
@@ -14,7 +17,7 @@ export const configureStore = () => {
   })
 
   var store = createStore(reducer, compose(
-    applyMiddleware(thunk),
+    applyMiddleware(middleware, thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ))
 

@@ -2,10 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {startCheckingTodo} from 'actions'
 
-let Todo = ({uid, id, todo, time, done, dispatch}) =>
+let Todo = ({id, todo, time, done, dispatch}) =>
   <li className='center w-100 lh-copy pv2-ns pv1 ba bl-0 bt-0 br-0 b--dotted b--black-30'>
     <div className='dib w-10 h1 v-top relative top-1'>
-      <input type='checkbox' checked={done} onChange={() => { dispatch(startCheckingTodo(uid, id, !done)) }} className='h1 w1 v-top' />
+      <input type='checkbox' checked={done} onChange={() => { dispatch(startCheckingTodo(id, !done)) }} className='h1 w1 v-top' />
     </div>
     <div className='dib w-90 pl0-l pl1-m pl2'>
       <p className='mv0 f4-l f5'>{todo}</p>
@@ -13,8 +13,4 @@ let Todo = ({uid, id, todo, time, done, dispatch}) =>
     </div>
   </li>
 
-export default connect(
-  state => ({
-    uid: state.user
-  })
-)(Todo)
+export default connect()(Todo)

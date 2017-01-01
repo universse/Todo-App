@@ -1,5 +1,6 @@
 import axios from 'axios'
 import firebase, {firebaseRef, githubProvider} from 'firebase.main'
+import {push} from 'react-router-redux'
 
 export const inputSearch = searchValue => ({
   type: 'INPUT_SEARCH',
@@ -15,7 +16,8 @@ export const addTodo = todoItem => ({
   todoItem
 })
 
-export const fetchTodoList = uid => (dispatch, getState) => {
+export const fetchTodoList = () => (dispatch, getState) => {
+  let uid = getState().user
   firebaseRef.child(uid).once('value').then(snapshot => {
     var savedTodoList = snapshot.val() || {}
     var formattedTodoList = Object.keys(savedTodoList).map(id => ({id, ...savedTodoList[id]}))
@@ -23,7 +25,7 @@ export const fetchTodoList = uid => (dispatch, getState) => {
   })
 }
 
-export const startAddingTodo = (uid, todo) => (dispatch, getState) => {
+export const startAddingTodo = todo => (dispatch, getState) => {
   let d = new Date()
   let time = d.toLocaleString()
   let todoItem = {
@@ -31,6 +33,7 @@ export const startAddingTodo = (uid, todo) => (dispatch, getState) => {
     time,
     done: false
   }
+  let uid = getState().user
   let todoItemRef = firebaseRef.child(uid).push(todoItem)
   // todoItemRef.update({id: todoItemRef.key})
   return todoItemRef.then(() => {
@@ -47,7 +50,8 @@ export const checkTodo = (id, done) => ({
   done
 })
 
-export const startCheckingTodo = (uid, id, done) => (dispatch, getState) => {
+export const startCheckingTodo = (id, done) => (dispatch, getState) => {
+  let uid = getState().user
   var todoItemRef = firebaseRef.child(`${uid}/${id}`)
   todoItemRef.update({
     done
@@ -62,10 +66,12 @@ export const logIn = uid => ({
 })
 
 export const startLogin = () => (dispatch, getState) =>
-  firebase.auth().signInWithPopup(githubProvider).then((user) => {
-    dispatch(logIn(user.user.uid))
-    dispatch(fetchTodoList(user.user.uid))
-  })
+  firebase.auth().signInWithPopup(githubProvider)
+  // .then((user) => {
+  //   dispatch(logIn(user.user.uid))
+  //   dispatch(fetchTodoList(user.user.uid))
+  //   dispatch(push('app'))
+  // })
 
 export const logOut = () => ({
   type: 'LOG_OUT'
@@ -76,10 +82,12 @@ export const clearList = () => ({
 })
 
 export const startLogout = () => (dispatch, getState) =>
-  firebase.auth().signOut().then(() => {
-    dispatch(clearList())
-    dispatch(logOut())
-  })
+  firebase.auth().signOut()
+  // .then(() => {
+  //   dispatch(clearList())
+  //   dispatch(logOut())
+  //   dispatch(push(''))
+  // })
 
 export const startFetchingLocation = () => ({
   type: 'START_FETCHING_LOCATION'
