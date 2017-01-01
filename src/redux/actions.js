@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import firebase, {firebaseRef, githubProvider} from 'firebase.main'
 import {push} from 'react-router-redux'
 
@@ -77,10 +77,6 @@ export const logOut = () => ({
   type: 'LOG_OUT'
 })
 
-export const clearList = () => ({
-  type: 'CLEAR_LIST'
-})
-
 export const startLogout = () => (dispatch, getState) =>
   firebase.auth().signOut()
   // .then(() => {
@@ -89,20 +85,20 @@ export const startLogout = () => (dispatch, getState) =>
   //   dispatch(push(''))
   // })
 
-export const startFetchingLocation = () => ({
-  type: 'START_FETCHING_LOCATION'
-})
-
-export const completeFetchingLocation = url => ({
-  type: 'COMPLETE_FETCHING_LOCATION',
-  url
-})
-
-export const fetchLocation = () => (dispatch, getState) => {
-  dispatch(startFetchingLocation())
-  let baseURL = 'http://maps.google.com/?q='
-  axios.get('http://ipinfo.io/').then(resolve => {
-    let loc = resolve.data.loc
-    dispatch(completeFetchingLocation(baseURL + loc))
-  })
-}
+// export const startFetchingLocation = () => ({
+//   type: 'START_FETCHING_LOCATION'
+// })
+//
+// export const completeFetchingLocation = url => ({
+//   type: 'COMPLETE_FETCHING_LOCATION',
+//   url
+// })
+//
+// export const fetchLocation = () => (dispatch, getState) => {
+//   dispatch(startFetchingLocation())
+//   let baseURL = 'http://maps.google.com/?q='
+//   axios.get('http://ipinfo.io/').then(resolve => {
+//     let loc = resolve.data.loc
+//     dispatch(completeFetchingLocation(baseURL + loc))
+//   })
+// }

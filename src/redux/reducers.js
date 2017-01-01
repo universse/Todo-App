@@ -30,29 +30,29 @@ export const todoListReducer = (state = [], action) => {
         }
         return todo
       })
-    case 'CLEAR_LIST':
+    case 'LOG_OUT':
       return []
     default:
       return state
   }
 }
 
-export const locationReducer = (state = {fetching: false, url: undefined}, action) => {
-  switch (action.type) {
-    case 'START_FETCHING_LOCATION':
-      return {
-        ...state,
-        fetching: true
-      }
-    case 'COMPLETE_FETCHING_LOCATION':
-      return {
-        fetching: false,
-        url: action.url
-      }
-    default:
-      return state
-  }
-}
+// export const locationReducer = (state = {fetching: false, url: undefined}, action) => {
+//   switch (action.type) {
+//     case 'START_FETCHING_LOCATION':
+//       return {
+//         ...state,
+//         fetching: true
+//       }
+//     case 'COMPLETE_FETCHING_LOCATION':
+//       return {
+//         fetching: false,
+//         url: action.url
+//       }
+//     default:
+//       return state
+//   }
+// }
 
 export const userReducer = (state = '', action) => {
   switch (action.type) {

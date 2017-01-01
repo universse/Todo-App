@@ -52,6 +52,7 @@ module.exports = {
       compressor: {
         warnings: false
       },
+      comments: false,
       unused: true,
       mangle: true,
       sourcemap: false,

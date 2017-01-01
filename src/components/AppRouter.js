@@ -2,7 +2,7 @@ import React from 'react'
 import {Route, Router, IndexRoute, browserHistory} from 'react-router'
 import {syncHistoryWithStore, push} from 'react-router-redux'
 
-import {logIn, logOut, fetchTodoList, clearList} from 'actions'
+import {logIn, logOut, fetchTodoList} from 'actions'
 import {AppLayout} from 'AppLayout'
 import Login from 'Login'
 import {App} from 'App'
@@ -19,7 +19,6 @@ firebase.auth().onAuthStateChanged(user => {
     store.dispatch(push('app'))
   } else {
     store.dispatch(logOut())
-    store.dispatch(clearList())
     store.dispatch(push(''))
   }
 })
