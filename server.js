@@ -1,7 +1,8 @@
 var express = require('express')
+const path = require('path')
 
-var app = express()
-const PORT = process.env.PORT || 3000
+const app = express()
+const PORT = process.env.PORT || 8080
 
 app.use(function (req, res, next) {
   if (req.headers['x-forwarded-proto'] === 'https') {
@@ -12,6 +13,10 @@ app.use(function (req, res, next) {
 })
 
 app.use(express.static('build'))
+
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+})
 
 app.listen(PORT, function () {
   console.log('Express server is up on port ' + PORT)

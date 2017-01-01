@@ -104,10 +104,6 @@ module.exports = {
     modulesDirectories: [
       'node_modules',
       './src/api',
-      './src/AppContainer',
-      './src/AppHeader',
-      './src/AppLayout',
-      './src/AppRouter',
       './src/components',
       './src/firebase',
       './src/redux'

@@ -64,10 +64,6 @@ module.exports = {
     modulesDirectories: [
       'node_modules',
       './src/api',
-      './src/AppContainer',
-      './src/AppHeader',
-      './src/AppLayout',
-      './src/AppRouter',
       './src/components',
       './src/firebase',
       './src/redux'
@@ -79,5 +75,8 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: paths.build
+  },
+  devServer: {
+    historyApiFallback: true
   }
 }

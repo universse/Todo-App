@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {firebaseRef} from 'firebase.main'
+import firebase, {firebaseRef, githubProvider} from 'firebase.main'
 
 export const inputSearch = searchValue => ({
   type: 'INPUT_SEARCH',
@@ -55,6 +55,10 @@ export const startCheckingTodo = (id, done) => (dispatch, getState) => {
     dispatch(checkTodo(id, done))
   })
 }
+
+export const startLogin = () => (dispatch, getState) => firebase.auth().signInWithPopup(githubProvider)
+
+export const startLogout = () => (dispatch, getState) => firebase.auth().signOut()
 
 export const startFetchingLocation = () => ({
   type: 'START_FETCHING_LOCATION'
