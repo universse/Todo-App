@@ -1,4 +1,7 @@
-export const showCompletedReducer = (state = false, action) => {
+import {routerReducer} from 'react-router-redux'
+import {combineReducers} from 'redux'
+
+const showCompletedReducer = (state = false, action) => {
   switch (action.type) {
     case 'TOGGLE_COMPLETED':
       return !state
@@ -7,7 +10,7 @@ export const showCompletedReducer = (state = false, action) => {
   }
 }
 
-export const searchValueReducer = (state = '', action) => {
+const searchValueReducer = (state = '', action) => {
   switch (action.type) {
     case 'INPUT_SEARCH':
       return action.searchValue
@@ -16,7 +19,7 @@ export const searchValueReducer = (state = '', action) => {
   }
 }
 
-export const todoListReducer = (state = [], action) => {
+const todoListReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return state.concat(action.todoItem)
@@ -54,7 +57,7 @@ export const todoListReducer = (state = [], action) => {
 //   }
 // }
 
-export const userReducer = (state = '', action) => {
+const userReducer = (state = '', action) => {
   switch (action.type) {
     case 'LOG_IN':
       return action.uid
@@ -64,3 +67,13 @@ export const userReducer = (state = '', action) => {
       return state
   }
 }
+
+const reducer = combineReducers({
+  showCompleted: showCompletedReducer,
+  searchValue: searchValueReducer,
+  todoList: todoListReducer,
+  user: userReducer,
+  routing: routerReducer
+})
+
+export default reducer
