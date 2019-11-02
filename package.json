@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.19.0",
     "express": "^4.14.0",
     "firebase": "^3.6.4",
     "react": "^15.4.1",
